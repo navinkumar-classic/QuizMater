@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 px-md-5 px-4 border-1-bottom">
+    <span class="navbar-brand mb-0 h1 fs-3">
+        <img src="{{ url_for('static', filename='images/fox.svg') }}" alt="Example SVG" height="60" width="60"> 
+        QuizMaster
+    </span>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse ms-5" id="navbarNav">
+
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link fs-5 text-right" href = "{{ url_for('user.user') }}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fs-5 text-right" href = "{{ url_for('user.user_score') }}">Scores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fs-5 text-right" href = "{{ url_for('user.user_summary') }}">Summary</a>
+            </li>
+        </ul>
+
+        <div class="search-container ms-auto">
+            <form method = "POST" action="/search-user" class="d-flex flex-row">
+                <input type="text" class="form-control" placeholder="Search.." name="search">
+                <input type="hidden" name = "type" value = "{{ type }}"/>
+                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
+    </div>
+    <a href = "{{ url_for('auth.exit') }}">
+        <button class="btn">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>    
+        </button>    
+    </a>
+</nav>
+
+<div class="content flex-grow-1">

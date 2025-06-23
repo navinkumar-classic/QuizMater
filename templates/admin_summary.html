@@ -1,0 +1,48 @@
+{% include 'html_head.html' %}
+{% include 'admin_navbar.html' %}
+
+<div class="d-flex flex-column">
+
+    <h2 class="text-center my-4">Summary Page</h2>
+
+    <div class="px-md-5 px-2">
+        <div class="accordion" id="accordionExample">
+            {% for quiz in quizzes %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="head{{quiz.quiz_id}}">
+                    <button class="accordion-button collapsed py-4" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navin{{quiz.quiz_id}}" aria-expanded="false" aria-controls="navin{{quiz.quiz_id}}">
+                        <span class="fs-4 flex-grow-1"><b>{{ quiz.name }}</b> &nbsp; - &nbsp; {{ chapterDic[quiz.chapter_id]}}</span>
+                    </button>
+                </h2>
+                <div id="navin{{quiz.quiz_id}}" class="accordion-collapse collapse" aria-labelledby="head{{quiz.quiz_id}}"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body bg-grey d-flex flex-column">
+                        <div class="d-flex flex-md-row flex-column w-100 fs-5 mt-2 mb-5">
+                            <div class="col-md-4"><b>Total Attempts: &nbsp;</b><span id = "totalAttempts{{quiz.quiz_id}}"></span></div>
+                            <div class="col-md-4"><b>Average Score: &nbsp;</b><span id = "averageScore{{quiz.quiz_id}}"></span></div>
+                            <div class="col-md-4"><b>Standard Deviation: &nbsp;</b><span id = "standardDeviation{{quiz.quiz_id}}"></span></div>
+                        </div>
+                        <div class="col-md-6 col-11 mx-auto">
+                            <h5 class="text-center"><b><i>Histogram of Student Performance</i></b></h5>
+                            <canvas id="histo{{quiz.quiz_id}}"></canvas>   
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% for quiz in quizzes %}
+    <script>
+        fetchQuizData('{{ quiz.quiz_id|string }}')
+        renderHistogram('{{ quiz.quiz_id|string }}')
+    </script>
+    {% endfor %}
+
+</div>
+
+{% include 'footer.html' %}
+{% include 'html_foot.html' %}

@@ -1,0 +1,92 @@
+body,html{
+    background-color: #FAFAFA;
+    font-family: "Montserrat", serif;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.bg-grey{ background-color: #FAFAFA; }
+.h-full{ height: 100vh; }
+.w-40{ width: 40%; }
+.w-33{ width: 33.33%; }
+.w-90{ width: 90%; }
+.w-95{ width: 95%; }
+.w-80{ width: 80%; }
+.rounded-lg{ border-radius: 20px; }
+.rounded-full{ border-radius: 50%; }
+.weight-600{ font-weight: 600; }
+.weight-400{ font-weight: 400; }
+.weight-300{ font-weight: 300; }
+.border-1{ border: 1px #E9EAEB solid; }
+.border-2{ border: 2px #E9EAEB solid; }
+.border-1-bottom{ border-bottom: 1px #E9EAEB solid; }
+.border-1-top{ border-top: 1px #E9EAEB solid; }
+.border-3-right-white{ border-right: 3px white solid; }
+.border-3-right{ border-right: 3px #E9EAEB solid; }
+.border-3-bottom{ border-bottom: 3px #E9EAEB solid; }
+.basis-full { flex-basis: 100%; }
+.basis-1\/2 { flex-basis: 50%; }
+.blur-bg {
+    backdrop-filter: blur(2px);
+    background: rgba(255, 255, 255, 0.2); 
+}
+.bg-orange{ background-color: #F28C28; }
+.table-responsive {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+@media (min-width: 992px) {
+    .md\:basis-1\/2 { flex-basis: 50%; }
+    .md:w-90 { width: 90%; }
+    .md:w-50 { width: 50%; }
+    .md:w-80 {width: 80%; }
+    .md:w-70 {width: 70%; }
+    .md:w-100 { width: 100%; }
+}
+#login-left{
+    background-color: #FFFFFF;
+    border-right: 1px #E9EAEB solid;
+}
+
+#login-box{
+    background-color: #FFFFFF;
+    border: 1px #E9EAEB solid;
+    border-radius: 5px;
+}
+
+.login_button.active{
+    background-color: #1570EF;
+    color: white;
+}
+
+.footer {
+    background-color: #ffffff;
+    padding: 10px;
+    text-align: center;
+}
+#circle{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    background-color: #F28C28;
+    color: #FFFFFF;
+    border: 0px;
+}
+#circle:hover{
+    color: #F28C28;
+    background-color: #FFFFFF;
+}
+#circle:active{
+    color: #FFFFFF;
+    background-color: #F28C28;
+}
+#quizForm{
+    display: none;
+}

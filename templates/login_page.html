@@ -1,0 +1,96 @@
+{% include 'html_head.html' %}
+
+<div class="d-flex flex-row h-full">
+
+    <div class="basis-1/2 d-md-flex flex-column-reverse d-none" id = "login-left">
+
+        <img src="{{ url_for('static', filename='images/fox.svg') }}" alt="Example SVG" class = "w-40 mx-3">
+
+        <div class = "shadow-lg w-50 rounded-lg mx-auto d-flex flex-column py-2 my-4">
+
+                <h5 class = "py-3 mx-auto my-0 text-center w-100 weight-600" style = "border-bottom: 1px #E9EAEB solid;">World s' Best Quizzing app</h5>
+
+                <div class = "p-3 pb-0 d-flex flex-row"> 
+
+                    <div class = "w-33 d-flex flex-column">
+
+                        <h6 class = "mx-auto weight-600">100K+</h6>
+                        <p class = "mx-auto">Users</p>
+
+                    </div>
+                
+                    <div class = "w-33 d-flex flex-column">
+
+                        <h6 class = "mx-auto weight-600">2k+</h6>
+                        <p class = "mx-auto">Quizzes</p>
+
+                    </div>
+
+                    <div class = "w-33 d-flex flex-column">
+
+                        <h6 class = "mx-auto weight-600">30K+</h6>
+                        <p class = "mx-auto">Hours Spent</p>
+
+                    </div>
+                
+                </div>
+
+        </div>
+
+    </div>
+
+    <div class="md:basis-1/2 basis-full flex-full d-flex flex-column justify-content-center">
+
+        <div class="m-3 mb-0 mb-md-0 m-md-5 d-flex flex-column py-3" id = "login-box">
+
+            <div class = "border-1-bottom w-100 pb-3">
+                <h3 class="text-center mb-4 weight-400"> 
+                    <img src="{{ url_for('static', filename='images/fox.svg') }}" alt="Example SVG" height="50" width = "50"> &nbsp;
+                    Quizmaster 
+                </h3>
+
+                <h2 class="text-center mb-4 weight-600"> 
+                    Welcome to Quizmaster
+                </h2>
+
+                <div  class="m-1 mx-5 border-1 d-flex flex-row rounded">
+
+                    <div class = "p-3 w-50 text-center rounded login_button" id = "admin_button" onclick="showContent('admin')" style="cursor: pointer;">
+                        Admin
+                    </div>
+
+                    <div class = "p-3 w-50 text-center rounded login_button" id = "user_button" onclick="showContent('user')" style="cursor: pointer;">
+                        User
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id = "login">
+
+                <div id="admin-login" style="display: none;">
+                    {% include 'admin_login.html' %}
+                </div>
+
+                <div id="user-login" style="display: none;">
+                    {% include 'user_login.html' %}
+                </div>
+
+            </div>
+
+        </div>
+        <div class = "mt-2">
+            <h6 class="text-center text-danger">{{ warning }}</h6>
+        </div>
+        
+    </div>
+
+</div>
+
+
+
+
+
+
+{% include 'html_foot.html' %}

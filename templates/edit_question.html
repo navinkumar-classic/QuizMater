@@ -1,0 +1,90 @@
+{% include 'html_head.html' %}
+
+{% for question in questions %}
+{% if question.question_id|string == question_id|string %}
+
+<div class = "w-100 vh-100 blur-bg d-flex flex-column justify-content-center align-items-center" id = "add_subject">
+
+    <div class="bg-white border-1 col-md-7 col-11 rounded shadow p-3 py-4">
+
+        <form class = "mx-1 mb-1 d-flex flex-column justify-content-center align-items-center" method="post" action="/edit-ques">
+
+            <h3 class="text-center mb-4 weight-400"> 
+                <img src="{{ url_for('static', filename='images/fox.svg') }}" alt="Example SVG" height="50" width = "50"> &nbsp;
+                Quizmaster 
+            </h3>
+
+            <h3 class = "weight-600"><i>Edit Question</i></h3>
+
+            <div class="form-floating mb-4 mt-3 col-md-10 col-12">
+                <textarea class="form-control" placeholder="Leave a Question here" id="floatingTextarea2" name = "question" style="height: 80px;">{{ question.question }}</textarea>
+                <label for="floatingTextarea2">Question</label>
+            </div>
+
+            <div class="mb-4 col-md-10 col-12"> 
+
+                <div class = "d-flex justify-content-evenly flex-md-row flex-column">
+
+                    <div class="form-floating col-md-5">
+                        <input type="input" class="form-control" id="floatingOptionA" name = "option-a" placeholder="Maths" value="{{ question.option_a }}" required>
+                        <label for="floatingOptionA">Option A</label>
+                    </div>
+
+                    <div class="form-floating col-md-5 mt-md-0 mt-4">
+                        <input type="input" class="form-control" id="floatingOptionB" name = "option-b" value="{{ question.option_b }}" placeholder="Maths" required>
+                        <label for="floatingOptionB">Option B</label>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="mb-4 col-md-10 col-12"> 
+
+                <div class = "d-flex justify-content-evenly flex-md-row flex-column">
+
+                    <div class="form-floating col-md-5">
+                        <input type="input" class="form-control" id="floatingOptionC" name = "option-c" placeholder="Maths" value="{{ question.option_c }}" required>
+                        <label for="floatingOptionC">Option C</label>
+                    </div>
+
+                    <div class="form-floating col-md-5 mt-md-0 mt-4">
+                        <input type="input" class="form-control" id="floatingOptionD" name = "option-d" placeholder="Maths" value="{{ question.option_d }}" required>
+                        <label for="floatingOptionD">Option D</label>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="form-floating mb-4 col-md-7 col-12">
+                <input type="input" class="form-control" id="floatingAnswer" name = "answer" placeholder="A" value="{{ question.answer }}" required>
+                <label for="floatingAnswer">Correct Option(A,B,C,D)</label>
+            </div>
+
+            
+
+            <input type="hidden" name="question_id" value="{{ question_id }}">
+
+            <div class = "col-12 d-flex flex-md-row flex-column align-items-center justify-content-evenly">
+                <button class = "btn btn-primary col-md-5 col-12 py-3" type="submit">Submit</button>                   
+            </div>   
+
+        </form>
+
+        <form method="post" action="/switchbackquiz" class="d-flex flex-column justify-content-center align-items-center mt-3">
+            <button class = "btn btn-danger col-md-5 col-12 py-3" type = "submit">Cancel</button>    
+        </form>
+
+    </div>
+
+    <div class = "mt-2">
+        <h6 class="text-center text-danger">{{ warning }}</h6>
+    </div>
+
+</div>
+
+{% endif %}
+{% endfor %}
+
+{% include 'html_foot.html' %}

@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 px-md-5 px-4 border-1-bottom">
+    <span class="navbar-brand mb-0 h1 fs-3">
+        <img src="{{ url_for('static', filename='images/fox.svg') }}" alt="Example SVG" height="60" width="60"> 
+        QuizMaster
+    </span>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse ms-md-5 ms-2" id="navbarNav">
+        {% for quiz in quizzes %}
+        {% if quiz.quiz_id|string == quiz_id|string %}
+        
+        <ul class="navbar-nav d-flex flex-md-row flex-column">
+            <li class="nav-item ms-md-4 ms-2">
+                <div class=" fs-5"><b>Total Question:</b>&nbsp; {{ numberQuestions.get(quiz.quiz_id, 0) }} </div>
+            </li>
+            <li class="nav-item ms-md-5 ms-2">
+                <div class="fs-5"><b>Timer:</b>&nbsp; <span id = "timer">{{ quiz.time_in_mins }}:00</span></div>
+            </li>
+            <li class="nav-item ms-md-5 ms-2">
+                <div class="fs-5"><b>Quiz Name:</b>&nbsp; {{ quiz.name }} </div>
+            </li>
+        </ul>
+
+        <button class="btn btn-primary ms-auto px-5 py-2 fs-5" id="startQuiz" ><b><i>START</i></b></button>
+        <script>
+            const quizDuration = "{{ quiz.time_in_mins }}"
+
+            document.getElementById("startQuiz").addEventListener("click", function() {
+                startQuiz(quizDuration);
+                document.getElementById("startQuiz").style.visibility='hidden'
+                document.getElementById("quizForm").style.display='block'
+                document.getElementById("quizIntro").style.display='none'
+            });
+        </script>
+        {% endif %}
+        {% endfor %}
+        
+
+    </div>
+</nav>
+
+<div class="content flex-grow-1">
+

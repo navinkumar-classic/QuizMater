@@ -1,0 +1,44 @@
+{% include 'html_head.html' %}
+
+<div class = "w-100 vh-100 blur-bg d-flex flex-column justify-content-center align-items-center" id = "add_subject">
+
+    <div class="bg-white border-1 col-md-5 col-11 rounded shadow p-3 py-4">
+
+        <form class = "mx-1 mb-1 d-flex flex-column justify-content-center align-items-center" method="post" action="/add-subject">
+
+            <h3 class="text-center mb-4 weight-400"> 
+                <img src="{{ url_for('static', filename='images/fox.svg') }}" alt="Example SVG" height="50" width = "50"> &nbsp;
+                Quizmaster 
+            </h3>
+
+            <h3 class = "weight-600"><i>Add Subject</i></h3>
+
+            <div class="form-floating mb-4 mt-3 col-md-10 col-12">
+                <input type="input" class="form-control" id="floatingSubject" name = "subject" placeholder="Maths" required>
+                <label for="floatingSubject">Subject</label>
+            </div>
+
+            <div class="form-floating mb-4 col-md-10 col-12">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name = "description" style="height: 100px;"></textarea>
+                <label for="floatingTextarea2">Description</label>
+            </div>
+
+            <div class = "col-12 d-flex flex-md-row flex-column align-items-center justify-content-evenly">
+                <button class = "btn btn-primary col-md-6 col-12 py-3" type="submit">Submit</button>                   
+            </div>   
+
+        </form>
+
+        <form method="post" action="/switchbackadmin" class="d-flex flex-column justify-content-center align-items-center mt-3">
+            <button class = "btn btn-danger col-md-6 col-12 py-3" type = "submit">Cancel</button>    
+        </form>
+
+    </div>
+
+    <div class = "mt-2">
+        <h6 class="text-center text-danger">{{ warning }}</h6>
+    </div>
+
+</div>
+
+{% include 'html_foot.html' %}

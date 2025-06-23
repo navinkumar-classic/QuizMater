@@ -1,0 +1,83 @@
+{% include 'html_head.html' %}
+{% include 'admin_navbar.html' with context %}
+
+<div class="d-flex flex-column h-100 justify-content-center align-items-center">
+    <div class = "flex-grow-1 w-100 d-flex flex-md-row flex-column flex-wrap justify-content-evenly">
+
+        {% for subject in subjects %}
+
+            <div class = "col-md-6 col-12 d-flex justify-content-center my-md-4 my-3">
+                <div class="card col-11 col-md-11 mx-auto shadow d-flex flex-column" style = "height: 50vh; overflow-y: auto;">
+                    <div class="px-3 pt-3 pb-1">
+                        <div class = "d-flex">
+                            <h5 class="card-title fs-3 flex-grow-1"> <i class="fa-solid fa-book"></i> {{ subject.name }}</h5>  
+                            <div class="ml-auto d-flex">
+
+                                <form method="post" action="/delsubject">
+                                    <input type="hidden" name="subject_id" value = "{{ subject.subject_id }}">
+                                    <button class="btn" ><i class="fa fa-trash fs-4"></i></button>    
+                                </form>
+
+                                <form method="post" action="/switcheditsub">
+                                    <input type="hidden" name="subject_id" value = "{{ subject.subject_id }}">
+                                    <button class="btn" ><i class="fa-solid fa-pen-to-square fs-4"></i></button>    
+                                </form> 
+                                
+                            </div>  
+                        </div>
+                        
+                        <p class="card-text">
+                            {{ subject.description }}
+                        </p>
+                    </div>
+                    <ul class="list-group list-group-flush border-0 flex-grow-1">
+                        <li class="list-group-item d-flex text-white py-2 justify-content-center border-0">
+                            <form method="post" action="/switchaddchap">
+                                <input type="hidden" name="subject_id" value="{{ subject.subject_id }}">
+                                <button type="submit" class="btn btn-warning text-white">Add Chapter</button>    
+                            </form>
+                            
+                        </li>
+                        <li class="list-group-item d-flex text-white p-0 bg-orange">
+                            <span class="col-md-1 col-2 border-3-right-white py-2 px-2"><b>No.</b></span>
+                            <span class="col-md-11 col-10 border-3-right-white py-2 px-2"><b>Chapter Name</b></span>
+                        </li>
+                        {% set counter = namespace(value=0) %}
+
+                        {% for chapter in chapters %}
+                        {% if chapter.subject_id == subject.subject_id %}
+                        {% set counter.value = counter.value + 1 %}
+                        <li class="list-group-item d-flex align-items-center p-0 border-3-bottom">
+                            <span class="col-md-1 col-2  py-2 px-3">{{ counter.value }}</span>
+                            <span class="col-md-8 col-6 py-2 px-2 d-inline-block text-truncate">{{ chapter.name }} - {{ chapter.description }}</span>
+                            <span class="col-md-3 col-4 py-2 px-2 my-auto d-flex ">
+                                <form method="post" action="/delchapter" class="ms-auto">
+                                    <input type="hidden" name="chapter_id" value = "{{ chapter.chapter_id }}">
+                                    <button class="btn" ><i class="fa fa-trash"></i></button>    
+                                </form>  
+                                <form method="post" action="/switcheditchap">
+                                    <input type="hidden" name="chapter_id" value = "{{ chapter.chapter_id }}">
+                                    <button class="btn" ><i class="fa-solid fa-pen-to-square"></i></button>    
+                                </form>   
+                            </span>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+    <form method="post" action="/switchaddsub">
+        <button type="submit" class="fs-1 d-flex justify-content-center align-items-center" id = "circle">
+            <b>+</b>
+        </button> 
+    </form>
+
+</div>
+
+
+{% include 'footer.html' %}
+{% include 'html_foot.html' %}

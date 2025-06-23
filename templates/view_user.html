@@ -1,0 +1,71 @@
+{% include 'html_head.html' %}
+
+<div class = "w-100 vh-100 blur-bg d-flex flex-column justify-content-center align-items-center" id = "add_subject">
+
+    <div class="bg-white border-1 col-md-5 col-11 rounded shadow p-3 py-4">
+
+
+        <h3 class="text-center mb-4 weight-400"> 
+            <img src="{{ url_for('static', filename='images/fox.svg') }}" alt="Example SVG" height="50" width = "50"> &nbsp;
+            Quizmaster 
+        </h3>
+            
+        <h3 class = "weight-600 text-center mb-5"><i>Quiz Details</i></h3>
+
+        <div class = "px-5 fs-5">
+            {% for quiz in quizzes %}
+            {% if quiz.quiz_id|string == quiz_id|string %}
+            <div class="d-flex flex-row w-100 mb-2">
+
+                <div class="col-6"><b>Quiz Name: </b></div>
+                <div class="col-6">{{ quiz.name }}</div>
+
+            </div>
+
+            <div class="d-flex flex-row w-100 mb-2">
+
+                <div class="col-6"><b>Subject Name: </b></div>
+                <div class="col-6">{{ subjectD[quiz.chapter_id] }}</div>
+
+            </div>
+
+            <div class="d-flex flex-row w-100 mb-2">
+
+                <div class="col-6"><b>Chapter Name: </b></div>
+                <div class="col-6">{{ chapterD[quiz.chapter_id] }}</div>
+
+            </div>
+
+            <div class="d-flex flex-row w-100 mb-2">
+
+                <div class="col-6"><b>No. Question: </b></div>
+                <div class="col-6">{{ numberQuestions.get(quiz.quiz_id, 0) }}</div>
+
+            </div>
+
+            <div class="d-flex flex-row w-100 mb-2">
+
+                <div class="col-6"><b>Start Date: </b></div>
+                <div class="col-6">{{ quiz.date }}</div>
+
+            </div>
+
+            <div class="d-flex flex-row w-100 mb-2">
+
+                <div class="col-6"><b>Duration: </b></div>
+                <div class="col-6">{{ quiz.time_in_mins }} mins</div>
+
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <form method="post" action="/switchbackuser" class="d-flex flex-column justify-content-center align-items-center mt-5">
+            <button class = "btn btn-danger col-md-4 col-12 py-2 fs-5" type = "submit">Exit</button>    
+        </form>
+
+    </div>
+
+</div>
+
+{% include 'html_foot.html' %}

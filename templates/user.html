@@ -1,0 +1,49 @@
+{% include 'html_head.html' %}
+{% include 'user_navbar.html' %}
+
+<h3 class="text-center mt-4 text-bold"><b><i>UPCOMING TEST</i></b></h3>
+
+<div class="table-responsive">
+  <table class="table table-striped mx-auto my-4 w-80 table-bordered rounded align-middle rounded-3 overflow-hidden">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col" class="py-3 fs-5">No.</th>
+        <th scope="col" class="py-3 fs-5">QuizName</th>
+        <th scope="col" class="py-3 fs-5">No. of Question</th>
+        <th scope="col" class="py-3 fs-5">Duration</th>
+        <th scope="col" class="py-3 fs-5">Start Time</th>
+        <th scope="col" class="py-3 fs-5">Action</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {% set counter = namespace(value=0) %}
+      {% for quiz in quizzes %}
+      {% set counter.value = counter.value + 1 %}
+      <tr>
+        <th scope="row" class="py-2">{{ counter.value }}</th>
+        <td class="py-2">{{ quiz.name }}</td>
+        <td class="py-2">{{ numberQuestions.get(quiz.quiz_id, 0) }}</td>
+        <td class="py-2">{{ quiz.time_in_mins }} mins</td>
+        <td class="py-2">{{ quiz.date }}</td>
+        <td class="d-flex flex-row py-2">
+
+          <form method="post" action="/switchviewuser" class="ms-auto me-2">
+              <input type="hidden" value="{{ quiz.quiz_id }}" name = "quiz_id"/>
+              <button class="btn btn-primary">View</button>    
+          </form>    
+
+          <form method="post" action="/switchquiz" class="me-auto">
+              <input type="hidden" value="{{ quiz.quiz_id }}" name = "quiz_id"/>
+              <button class="btn btn-primary {% if not started[quiz.quiz_id] %} disabled {% endif %}">Start</button>    
+          </form> 
+          
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+{% include 'footer.html' %}
+{% include 'html_foot.html' %}

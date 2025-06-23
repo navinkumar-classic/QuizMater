@@ -1,0 +1,50 @@
+{% include 'html_head.html' %}
+{% include 'user_navbar.html' %}
+
+<h3 class="text-center mt-4 text-bold"><b><i>TEST SCORES</i></b></h3>
+
+<div class="table-responsive">
+  <table class="table table-striped mx-auto my-4 w-80 table-bordered rounded align-middle rounded-3 overflow-hidden">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col" class="py-3 fs-5">No.</th>
+        <th scope="col" class="py-3 fs-5">QuizName</th>
+        <th scope="col" class="py-3 fs-5">Total Marks</th>
+        <th scope="col" class="py-3 fs-5">Scored Marks</th>
+        <th scope="col" class="py-3 fs-5">Submit Time</th>
+        <th scope="col" class="py-3 fs-5">Action</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {% set counter = namespace(value=0) %}
+      {% for score in scores %}
+      {% if score.user_id == user_id %}
+      {% set counter.value = counter.value + 1 %}
+      <tr>
+
+        <th scope="row" class="py-3">{{counter.value}}</th>
+        {% for quiz in quizzes %}
+        {% if score.quiz_id|string == quiz.quiz_id|string %}
+        <td class="py-3">{{ quiz.name }}</td>
+        <td class="py-3">{{ numberAnswers.get(score.score_id, 0) }}</td>
+        {% endif %}
+        {% endfor %}
+        <td class="py-3">{{ score.score }}</td>
+        <td class="py-3">{{ score.timestamp }}</td>
+        <td class="d-flex">
+          <form method="post" action="/switchscorerep" class="mx-auto">
+            <input type="hidden" value="{{ score.score_id }}" name="score_id" />
+            <button class="btn btn-primary">View</button>
+          </form>
+        </td>
+
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+{% include 'footer.html' %}
+{% include 'html_foot.html' %}
