@@ -1,11 +1,17 @@
 # QuizMaster-V1
 
 ## Overview
-Machine learning; a subject considered extremely complex and difficult to understand have. Well, what if ML models and understanding the effects of hyperparameters don't have to be black box? **HyperViz** is a dynamic interactive web platform developed to allow visual learning for anyone interested in understanding the working of these models and how to tune hyperparameters efficiently. It turns the dry, theoretical concepts of machine learning into something intuitive and interactive. enabling users to understand how various algorithms work, visualize them via realtime simulations and experience the effects of hyperparameter tuning.
-
-The project leverages NextJS in combination with TypeScript to create our scalable front-end application while we run models in the back using Flask, either with the help of ML libraries or direct implementation.
+QuizMaster is a full-stack web application built with Flask and Jinja2 that allows administrators to create, schedule, and manage quizzes while enabling users to take those quizzes at specified times. It offers real-time quiz evaluation, performance analytics, and user-friendly authentication.
 
 ## Features
+
+- User & Admin Login  
+- User Registration with Qualification & Date of Birth  
+- Create, Edit, and Schedule Quizzes  
+- Auto Timer & Live Quiz Attempt Interface  
+- View Scores & Quiz History  
+- Admin Panel for Managing Quizzes  
+- Detailed Summary with Charts & Stats  
 
 ## Technology Stack
 - **Frontend:** JINJA2 Template
