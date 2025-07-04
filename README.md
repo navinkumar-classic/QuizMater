@@ -1,12 +1,38 @@
 # QuizMaster-V1
-This is a project to build a quizzing website for my MAD-1 project
+
+## Overview
+Machine learning; a subject considered extremely complex and difficult to understand have. Well, what if ML models and understanding the effects of hyperparameters don't have to be black box? **HyperViz** is a dynamic interactive web platform developed to allow visual learning for anyone interested in understanding the working of these models and how to tune hyperparameters efficiently. It turns the dry, theoretical concepts of machine learning into something intuitive and interactive. enabling users to understand how various algorithms work, visualize them via realtime simulations and experience the effects of hyperparameter tuning.
+
+The project leverages NextJS in combination with TypeScript to create our scalable front-end application while we run models in the back using Flask, either with the help of ML libraries or direct implementation.
+
+## Features
+
+## Technology Stack
+- **Frontend:** JINJA2 Template
+- **Backend:** Flask
+- **Styling:** Bootstrap
+- **DataBase:** SQLite
+
+## Installation
+### Prerequisites
+1. Install Flask
 ```bash
 pip install Flask
+```
+
+2. Install SQLAlchemy
+```bash
 pip install Flask-SQLAlchemy
+```
+
+
+### Running Locally
+```bash
 python app.py
 ```
 
-Open [http://127.0.0.1:5000](http://127.0.0.1:5000) with your browser to see the result.
+## Usage
+We have made sure that our website is easily navigable and intuitive in its usage.
 
 # ScreenShots
 ## Login Page
